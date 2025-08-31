@@ -1,0 +1,29 @@
+body{
+    margin: 0px;
+    background-color: black;
+    color: gold;
+    font-family: 'Jacquard 12';
+    image-rendering: pixelated;
+}
+
+header{
+    text-align: center;
+}
+
+.dungeon{
+    background-image: url(assets/Backgrounds/dungeonbg.png);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    img{
+        width: 255px;
+        height: 355px;
+    }
+
+    p{
+        font-size:50px;
+    }
+}
