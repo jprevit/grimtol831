@@ -8,16 +8,18 @@ body{
 
 header{
     text-align: center;
+    border: double gold 5px;  
+}
+
+.town{
+    background-image: url(assets/Backgrounds/townbg.png);
+    height: 60dvh;
+    gap: 1em;
 }
 
 .dungeon{
     background-image: url(assets/Backgrounds/dungeonbg.png);
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-
+    
     img{
         width: 255px;
         height: 355px;
@@ -28,7 +30,53 @@ header{
     }
 }
 
+.dungeon,.town{
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
 .monster-stats{
     display: flex;
     justify-content: space-around;
+}
+
+
+.hero{
+    border: double gold 5px;   
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    align-items: center;
+    font-size: 25px;
+    height: 20dvh;
+    position: sticky;
+    bottom: 0px;
+    padding: 1em;
+
+    img{
+        min-width: 30dvw;
+    }
+}
+
+.card{
+    background-color: gray;
+    border: double gold 5px;
+    padding: 1em;
+    font-size: larger;
+    width: 30dvw;
+    min-height: 20dvh;
+    max-height: 30dvh;
+
+    button {
+        font-size: 20px;
+        background-color: black;
+        border: double gold 8px;
+        color: gold;
+        font-family: 'Jacquard 12';
+        padding: 1em;
+    }
 }

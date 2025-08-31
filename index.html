@@ -18,6 +18,20 @@
     </header>
 
     <main>
+        <section class="town">
+            <div class="card">
+                <h2>Tavern 🛖</h2>
+                <p>Rest and heal</p>
+                <button onclick="healHero()" id="tavern-cost"> 🪙</button>
+            </div>
+
+            <div class="card">
+                <h2>Cobbler 👢</h2>
+                <p>Buy bigger boots</p>
+                <button onclick="upgradeBoots()" id="boot-cost"> 🪙</button>
+            </div>
+        </section>
+
         <section class="dungeon">
             <div class="monster-card" id="monster-card" onclick="squishMonster()">
                 <img src="assets\monsters\goblin.png" alt="" id="monster-picture">
@@ -25,6 +39,16 @@
                 <div class="monster-stats" id="monster-stats">Shreknar</div>
             </div>
         </section>
+
+        <section class="hero" id="hero">
+            <img src="assets/Players/HeroPortrait1.png" alt="">
+            <div>
+                <h1 id="hero-name">Placeholder</h1>
+                <p id="hero-stats">Placeholder</p>
+            </div>
+        </section>
+
+
     </main>
     
 
