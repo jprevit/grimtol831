@@ -11,7 +11,9 @@ let hero ={
     hp: 10,
     ap: 2,
     gold: 0,
-    bootSize: 1
+    boot: 1,
+    arrow: 0,
+    magic: 3,
 }
 
 let monster = {
@@ -60,44 +62,100 @@ let monsters = [
 }
 ]
 
-let tavernCost = 2
-let bootCost = hero.ap + hero.bootSize
+let townCost = {
+    tavern: 2,
+    boot: hero.boot,
+    arrow: hero.arrow + 1,
+    magic: hero.magic * 2
+}
+
 
 // SECTION Game Logic
 
-function squishMonster(){
-    if(!monster.hp){
+function squishMonster(attackType){
+    let totalAttack = 0
+
+    if(attackType = 'boot'){
+        totalAttack = hero.ap + hero.boot
+    } else if (attackType = 'arrow'){
+        totalAttack = hero.ap + hero.arrow
+    } else {
+        totalAttack = hero.ap + hero.magic
+    }
+    
+    monster.hp -= totalAttack
+    console.log(`${hero.name} did ${totalAttack} damage!`);
+
+    if(monster.hp < 0){
+        hero.gold += monster.reward
+        window.alert(`You have squished ${monster.name}!`)
         let newMonster = monsters.shift()
         monster = newMonster
-    } else {
-        monster.hp -= hero.ap + hero.bootSize
-        console.log(`${hero.name} did ${hero.ap +hero.bootSize} damage!`);
-        
-        if(monster.hp){
-            hero.hp -= monster.ap
-        }
-        
-        if(monster.hp < 0){
-            monster.hp = 0
-        }
-
-        if(monster.hp === 0){
-            window.alert(`You have squished ${monster.name}!`)
-            hero.gold += monster.reward
-        }
-
-        if(monsters.length == 0){
-            window.alert('All the monsters are dead! Congratulations you have decimated an ecosystem!')
-        }
+        drawMonster()
     }
+        
+    if(monster.hp){
+        hero.hp -= monster.ap
+    }
+
+    if(hero.hp <0){
+        hero.hp = 0
+    }
+
+        
+
+    if(monsters.length == 0){
+        window.alert('All the monsters are dead! Congratulations you have decimated an ecosystem!')
+    }
+    
     drawMonster()
     drawHero()
     console.log(monster.hp);
 }
 
 function healHero(){
-    hero.gold -= tavernCost
-    hero.hp = hero.maxHp
+
+    if(hero.gold >= townCost.tavern){
+        if(!(hero.hp == hero.maxHp)){
+            hero.gold -= townCost.tavern
+            hero.hp = hero.maxHp
+        }else{
+            window.alert('Get up you bum, you are already healthy!')
+        }
+    }else{
+        window.alert("We don't serve folks hangin' out the passenger side of their best friend's ride.")
+    }
+
+    drawHero()
+}
+
+function upgradeHero(upgradeType){
+    if (upgradeType == 'boot'){
+        if(hero.gold >= townCost.boot){
+            hero.bootSize++
+            hero.gold -= townCost.boot
+        }else{
+            window.alert("We don't serve folks hangin' out the passenger side of their best friend's ride.")
+        }
+    } else if (upgradeType == 'arrow'){
+         if(hero.gold >= townCost.arrow){
+            hero.arrow++
+            hero.gold -= townCost.arrow
+        }else{
+            window.alert("We don't serve folks hangin' out the passenger side of their best friend's ride.")
+        }
+    }else{
+         if(hero.gold >= townCost.magic){
+            hero.magic++
+            hero.gold -= townCost.magic
+        }else{
+            window.alert("We don't serve folks hangin' out the passenger side of their best friend's ride.")
+        }
+    }
+
+
+    drawTown()
+    drawHero()
 }
 
 // SECTION Rendering
@@ -120,7 +178,11 @@ function drawHero(){
     heroName.innerText = hero.name
     heroStats.innerHTML = `
     <p>HP: ${hero.hp}</p>
-    <p>Attack: ${hero.ap + hero.bootSize}</p>
+    <div class="hero-stats">
+        <p>Boot🥾 Power: ${hero.ap + hero.boot}</p>
+        <p>Arrow🏹 Power: ${hero.ap + hero.arrow}</p>
+        <p>Magic🪄 Power: ${hero.ap + hero.magic}</p>
+    </div>
     <p>Gold: ${hero.gold}</p>
     `
 }
@@ -128,9 +190,13 @@ function drawHero(){
 function drawTown(){
     let tavernCostElm = document.getElementById('tavern-cost')
     let bootCostElm = document.getElementById('boot-cost')
+    let bowCostElm = document.getElementById('arrow-cost')
+    let libraryCostElm = document.getElementById('magic-cost')
 
-    tavernCostElm.innerText = `${tavernCost} 🪙`
-    bootCostElm.innerText = `${bootCost} 🪙`
+    tavernCostElm.innerText = `${townCost.tavern} 🪙`
+    bootCostElm.innerText = `${townCost.boot} 🪙`
+    bowCostElm.innerText = `${townCost.arrow} 🪙`
+    libraryCostElm.innerText = `${townCost.magic} 🪙`
 }
 
 drawHero()

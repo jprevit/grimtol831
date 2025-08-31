@@ -11,18 +11,28 @@ header{
     border: double gold 5px;  
 }
 
+button {
+        font-size: 15px;
+        background-color: black;
+        border: double gold 8px;
+        color: gold;
+        font-family: 'Jacquard 12';
+        padding: .5em;
+        margin: .5em;
+    }
+
 .town{
     background-image: url(assets/Backgrounds/townbg.png);
-    height: 60dvh;
+
     gap: 1em;
+    flex-wrap: wrap;
 }
 
 .dungeon{
     background-image: url(assets/Backgrounds/dungeonbg.png);
     
     img{
-        width: 255px;
-        height: 355px;
+        width: 30dvw;
     }
 
     p{
@@ -36,6 +46,8 @@ header{
     display: flex;
     justify-content: center;
     text-align: center;
+    height: 60dvh;
+    padding: 1em;
 }
 
 .monster-stats{
@@ -51,32 +63,29 @@ header{
     justify-content: center;
     gap: 1em;
     align-items: center;
-    font-size: 25px;
-    height: 20dvh;
+    font-size: 20px;
     position: sticky;
     bottom: 0px;
     padding: 1em;
 
     img{
-        min-width: 30dvw;
+        min-width: 10dvw;
     }
+}
+
+.hero-stats{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
 }
 
 .card{
     background-color: gray;
     border: double gold 5px;
     padding: 1em;
-    font-size: larger;
     width: 30dvw;
-    min-height: 20dvh;
-    max-height: 30dvh;
+    min-height: 10dvh;
+    max-height: 20dvh;
 
-    button {
-        font-size: 20px;
-        background-color: black;
-        border: double gold 8px;
-        color: gold;
-        font-family: 'Jacquard 12';
-        padding: 1em;
-    }
+    
 }

@@ -28,15 +28,32 @@
             <div class="card">
                 <h2>Cobbler 👢</h2>
                 <p>Buy bigger boots</p>
-                <button onclick="upgradeBoots()" id="boot-cost"> 🪙</button>
+                <button onclick="upgradeHero('boot')" id="boot-cost"> 🪙</button>
+            </div>
+
+            <div class="card">
+                <h2>Bow-dude 🏹</h2>
+                <p>Buy bigger bow</p>
+                <button onclick="upgradeHero('arrow')" id="arrow-cost"> 🪙</button>
+            </div>
+
+            <div class="card">
+                <h2>Library 📖</h2>
+                <p>Buy bigger brains</p>
+                <button onclick="upgradeHero('magic')" id="magic-cost"> 🪙</button>
             </div>
         </section>
 
         <section class="dungeon">
-            <div class="monster-card" id="monster-card" onclick="squishMonster()">
+            <div class="monster-card" id="monster-card">
                 <img src="assets\monsters\goblin.png" alt="" id="monster-picture">
                 <h1 id="monster-name">Shreknar</h1>
                 <div class="monster-stats" id="monster-stats">Shreknar</div>
+                <div>
+                    <button onclick="squishMonster('boot')">🥾</button>
+                    <button onclick="squishMonster('arrow')">🏹</button>
+                    <button onclick="squishMonster('magic')">🪄</button>
+                </div>
             </div>
         </section>
 
